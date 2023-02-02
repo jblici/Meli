@@ -1,0 +1,182 @@
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-color: #EEEEEE;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+
+p {
+  margin-top:0;
+}
+
+.nav {
+  display:flex;
+  justify-content: center;
+  align-items: center;
+  height: 50px;
+  background-color: #FFE700;
+  width: 100%;
+}
+
+.logo {
+  height: 40px;
+  margin-right: 20px;
+}
+
+.searchbar {
+  display: flex;
+  align-items: center;
+  align-content: center;
+}
+
+.searchbar input {
+  width: 70rem;
+  height: 30px;
+  border: white;
+  padding:10px;
+  border-radius: 2px;
+}
+
+.searchIcon {
+  height: 30px;
+  padding: 0 10px;
+  background-color: lightgray;
+  display: flex;
+  align-items: center;
+  border-radius: 2px;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+  max-width: 77rem;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.breadcrumble {
+  margin-top: 20px;
+  color: grey;
+  font-size: 12px
+}
+
+.products {
+  background-color: white;
+  margin-top: 20px;
+}
+
+.cards {
+  background-color: white;
+  width: 100%;
+  max-height: fit-content;
+  margin-top: 20px;
+}
+
+.card {
+  display: flex;
+  border-bottom: 1px solid grey;
+  padding: 15px
+}
+
+.cardDescription {
+  display: flex;
+  flex-direction: column;
+  padding: 30px;
+}
+
+.cardDetail {
+  display: flex;
+  flex-direction: column;
+  margin-top: 10px;
+}
+
+.cardInfo {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 100%;
+  font-size: 1.3rem
+}
+
+.cardImg img{
+  height: 200px;
+  width: 200px;
+}
+
+.cardShipping {
+  padding: 50px;
+}
+
+.productDetail {
+  display: flex;
+}
+
+.productDetail img {
+  width: 98%;
+}
+
+.productImg {
+
+  
+  width: 80%;
+}
+
+.productImg img {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 50%;
+}
+
+.productInfo {
+  display: flex;
+  flex-direction: column;
+  font-size: 1.3rem;
+}
+
+.productCard {
+  background-color: white;
+  padding: 20px;
+  margin-top: 20px;
+}
+
+.sells {
+  font-size:14px;
+  color: grey;
+}
+
+.productButton button {
+  width: 100%;
+  height: 40px;
+  border-radius: 5px;
+  background-color: #1b73e8;
+  border: 0;
+  color: white;
+}
+
+.price {
+  font-size: 1.7rem;
+  display: flex;
+}
+
+.cents {
+  font-size: 1.2rem;
+}
+
+.description {
+  color: grey;
+}
+
+.cardLink {
+  text-decoration: none;
+  color: black;
+}
