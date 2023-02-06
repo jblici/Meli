@@ -1,0 +1,73 @@
+$color-buttons: #1b73e8;
+
+@mixin display($display, $direction, $justify, $items, $content) {
+  display: $display;
+  flex-direction: $direction;
+  justify-content: $justify;
+  align-items: $items;
+  align-content: $content;
+}
+
+.productCard {
+  background-color: white;
+  padding: 20px;
+  margin-top: 20px;
+}
+
+.productDetail {
+  display: flex;
+}
+
+.productLeft {
+  width: 70%;
+  .leftInformation {
+    width:95%
+  }
+  img {
+    @include display(flex, row, center, center, null);
+    width: 38%;
+  }
+}
+
+.description {
+  color: grey
+}
+
+.productInfo {
+  @include display(flex, column, space-around, null, null);
+  font-size: 1.5rem;
+  padding: 20px;
+  height: 200px;
+  margin: 0 auto;
+  border: 1px solid lightgrey;
+  border-radius: 4px;
+  .info {
+    max-width: 90%;
+  }
+  .sells {
+    font-size: 14px;
+    color: grey;
+  }
+  .price {
+    margin-top: 20px;
+    font-size: 1.7rem;
+    display: flex;
+  }
+  .cents {
+    font-size: 1.2rem;
+  }  
+}
+
+.productButton {
+  width: 100%;
+  margin: 0 auto;
+    button {
+    width: 100%;
+    height: 40px;
+    border-radius: 5px;
+    background-color: $color-buttons;
+    border: 0;
+    color: white;
+    cursor: pointer; 
+  }
+}

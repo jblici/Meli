@@ -1,0 +1,214 @@
+.productCard {
+  background-color: white;
+  padding: 20px;
+  margin-top: 20px;
+}
+
+.productDetail {
+  display: flex;
+}
+
+.productLeft {
+  width: 70%;
+}
+.productLeft .leftInformation {
+  width: 95%;
+}
+.productLeft img {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  width: 38%;
+}
+
+.description {
+  color: grey;
+}
+
+.productInfo {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  font-size: 1.5rem;
+  padding: 20px;
+  height: 200px;
+  margin: 0 auto;
+  border: 1px solid lightgrey;
+  border-radius: 4px;
+}
+.productInfo .info {
+  max-width: 90%;
+}
+.productInfo .sells {
+  font-size: 14px;
+  color: grey;
+}
+.productInfo .price {
+  margin-top: 20px;
+  font-size: 1.7rem;
+  display: flex;
+}
+.productInfo .cents {
+  font-size: 1.2rem;
+}
+
+.productButton {
+  width: 100%;
+  margin: 0 auto;
+}
+.productButton button {
+  width: 100%;
+  height: 40px;
+  border-radius: 5px;
+  background-color: #1b73e8;
+  border: 0;
+  color: white;
+  cursor: pointer;
+}
+
+.card {
+  display: flex;
+  border-bottom: 1px solid lightgrey;
+  padding: 20px;
+}
+.card:hover .cardFavorite {
+  display: block;
+}
+.card .cardFavorite {
+  display: none;
+  padding: 10px;
+  font-size: 1.8rem;
+  color: #1b73e8;
+}
+
+.cardDescription {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  padding: 5px;
+}
+.cardDescription .shipping {
+  display: flex;
+  flex-direction: row;
+  align-content: center;
+  font-size: 16px;
+  color: #5AAA53;
+  border-radius: 4px;
+  width: fit-content;
+  margin-top: 15px;
+}
+.cardDescription .price {
+  margin-top: 10px;
+  font-weight: 600;
+  font-size: 1.6rem;
+}
+
+.cardDetail {
+  display: flex;
+  flex-direction: column;
+  margin-top: 10px;
+  font-size: 1.5rem;
+  font-weight: 100;
+}
+
+.cardInfo {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 100%;
+  font-size: 1.3rem;
+}
+
+.cardImg img {
+  height: 200px;
+  width: 200px;
+}
+
+.cardCondition {
+  margin-top: 15px;
+  font-size: 1.1rem;
+  color: gray;
+}
+
+.cardLink {
+  text-decoration: none;
+  color: black;
+}
+
+body {
+  margin: 0;
+  background-color: #EEEEEE;
+  font-family: "Open Sans", sans-serif;
+  font-weight: 100;
+}
+
+p {
+  margin: 0;
+}
+
+.nav {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  height: 50px;
+  background-color: #FFE700;
+}
+
+.logo {
+  height: 40px;
+  margin-right: 20px;
+}
+
+.searchbar {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  align-content: center;
+}
+.searchbar input {
+  width: 70rem;
+  height: 30px;
+  border: white;
+  padding: 10px;
+  border-radius: 2px;
+}
+
+.searchIcon {
+  height: 30px;
+  padding: 0 10px;
+  background-color: lightgray;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  border-radius: 2px;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+  max-width: 77rem;
+  margin: 0 auto;
+}
+
+.breadcrumble {
+  margin-top: 20px;
+  color: grey;
+  font-size: 12px;
+}
+
+.products {
+  background-color: white;
+  margin-top: 20px;
+}
+
+.cards {
+  background-color: white;
+  width: 100%;
+  max-height: fit-content;
+  margin-top: 20px;
+}
+
+/*# sourceMappingURL=styles.css.map */

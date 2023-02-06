@@ -1,0 +1,79 @@
+@use 'cardDetail';
+@use 'cards';
+
+$color-principal: #FFE700;
+
+@mixin display($display, $direction, $justify, $items, $content) {
+  display: $display;
+  flex-direction: $direction;
+  justify-content: $justify;
+  align-items: $items;
+  align-content: $content;
+}
+
+body {
+  margin: 0;
+  background-color: #EEEEEE;
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 100;
+}
+
+p {
+  margin: 0;
+}
+
+.nav {
+  @include display(flex, row, center, center, null);
+  height: 50px;
+  background-color: $color-principal;
+}
+
+.logo {
+  height: 40px;
+  margin-right: 20px;
+}
+
+.searchbar {
+  @include display(flex, row, null, center, center);
+
+  input {
+    width: 70rem;
+    height: 30px;
+    border: white;
+    padding: 10px;
+    border-radius: 2px;
+  }
+}
+
+.searchIcon {
+  height: 30px;
+  padding: 0 10px;
+  background-color: lightgray;
+  @include display(flex, row, null, center, null);
+  border-radius: 2px;
+}
+
+.container {
+  @include display(flex, column, null, null, center);
+  max-width: 77rem;
+  margin: 0 auto;
+}
+
+.breadcrumble {
+  margin-top: 20px;
+  color: grey;
+  font-size: 12px;
+}
+
+.products {
+  background-color: white;
+  margin-top: 20px;
+}
+
+.cards {
+  background-color: white;
+  width: 100%;
+  max-height: fit-content;
+  margin-top: 20px;
+}
+

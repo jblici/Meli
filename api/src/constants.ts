@@ -1,5 +1,3 @@
 const BASE_URL = 'https://api.mercadolibre.com';
 
-module.exports = {
-    BASE_URL,
-};
+export default BASE_URL;

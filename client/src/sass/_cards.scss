@@ -1,0 +1,77 @@
+$border: 1px solid lightgrey;
+$color-buttons: #1b73e8;
+
+@mixin display($display, $direction, $justify, $items, $content) {
+  display: $display;
+  flex-direction: $direction;
+  justify-content: $justify;
+  align-items: $items;
+  align-content: $content;
+}
+
+.card {
+  display: flex;
+  border-bottom: $border;
+  padding: 20px;
+  &:hover {
+    .cardFavorite {
+      display: block;
+    }
+  }
+  .cardFavorite {
+    display: none;
+    padding: 10px;
+    font-size: 1.8rem;
+    color: $color-buttons;
+  }
+}
+
+.cardDescription {
+  @include display(flex, column, space-around, null, null);
+  padding: 5px;
+
+  .shipping {
+    @include display(flex, row, null, null, center);
+    font-size: 16px;
+    color: #5AAA53;
+    border-radius: 4px;
+    width: fit-content;
+    margin-top: 15px
+  }
+
+  .price {
+    margin-top: 10px;
+    font-weight: 600;
+    font-size: 1.6rem
+  }
+}
+
+.cardDetail {
+  @include display(flex, column, null, null, null);
+  margin-top: 10px;
+  font-size: 1.5rem;
+  font-weight: 100;
+}
+
+.cardInfo {
+  @include display(flex, row, space-between, null, null);
+  width: 100%;
+  font-size: 1.3rem;
+}
+
+.cardImg img {
+  height: 200px;
+  width: 200px;
+}
+
+.cardCondition {
+  margin-top: 15px;
+  font-size: 1.1rem;
+  color: gray;
+}
+
+.cardLink {
+  text-decoration: none;
+  color: black;
+}
+

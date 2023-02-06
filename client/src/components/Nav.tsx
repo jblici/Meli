@@ -6,7 +6,8 @@ export default function Nav() {
   const [search, setSearch] = useState("");
   const navigate = useNavigate();
 
-  const handleSearch = (e) => {
+  const handleSearch = (e: React.FormEvent) => {
+    e.preventDefault();
     navigate(`/items?query=${search}`, { replace: true });
   };
 
@@ -20,10 +21,10 @@ export default function Nav() {
         />
       </div>
       <div className="">
-        <form className="searchbar" onSubmit={handleSearch}>
+        <form className="searchbar" method="search" onSubmit={handleSearch}>
           <input
             type="search"
-            name="query"
+            name="search"
             onChange={(e) => setSearch(e.target.value)}
             placeholder="Nunca dejes de buscar"
           />
