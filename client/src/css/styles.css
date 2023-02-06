@@ -161,13 +161,13 @@ p {
   margin-right: 20px;
 }
 
-.searchbar {
+.searchBox {
   display: flex;
   flex-direction: row;
   align-items: center;
   align-content: center;
 }
-.searchbar input {
+.searchBox input {
   width: 70rem;
   height: 30px;
   border: white;
@@ -193,7 +193,7 @@ p {
   margin: 0 auto;
 }
 
-.breadcrumble {
+.breadcrumbs {
   margin-top: 20px;
   color: grey;
   font-size: 12px;

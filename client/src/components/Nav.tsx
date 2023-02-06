@@ -3,16 +3,16 @@ import { BsSearch } from "react-icons/bs";
 import { useNavigate } from "react-router-dom";
 
 export default function Nav() {
-  // Inicializamos el estado con un string vacio
+  // Inicializamos el estado con un string vació
   const [search, setSearch] = useState("");
-  // Usamos la funcion de navegacion de react-router-dom para redireccionar a la vista de los productos
+  // Usamos la función de navegación de react-router-dom para redireccionar a la vista de los productos
   const navigate = useNavigate();
 
-  // Creamos la funcion que se llama cuando el formulario es ejecutado
+  // Creamos la función que se llama cuando el formulario es ejecutado
   const handleSearch = (e: React.FormEvent) => {
     // Con el preventDefault() cancelamos el evento, lo que significa que cualquier acción por defecto que deba producirse como resultado de este evento, no ocurrirá
     e.preventDefault();
-    // Con la funcion navigate() nos redirigimos a la ruta "/items" con la query search que obtenemos del input search en la URL
+    // Con la función navigate() nos redirigimos a la ruta "/items" con la query search que obtenemos del input search en la URL
     navigate(`/items?query=${search}`, { replace: true });
   };
 
@@ -26,7 +26,7 @@ export default function Nav() {
         />
       </div>
       <div className="">
-        <form className="searchbar" method="search" onSubmit={handleSearch}>
+        <form className="searchBox" method="search" onSubmit={handleSearch}>
           <input
             type="search"
             name="search"

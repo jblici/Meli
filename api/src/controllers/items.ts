@@ -10,13 +10,13 @@ interface Category {
   values: Array<object>;
 }
 
-// Creamos la funcion para obtener todos los items de la api de Mercadolibre
+// Creamos la función para obtener todos los items de la api de Mercadolibre
 export const getAllItems = async (req: Request, res: Response) => {
   // Get the query parameter from the request
-  // Obtenemos el parametro query para buscar los items.
+  // Obtenemos el parámetro query para buscar los items.
   let { query } = req.query;
   if (query) {
-    // Creamos el GET request de la api de Meli con el parametro query.
+    // Creamos el GET request de la api de Meli con el parámetro query.
     axios
       .get(`${BASE_URL}/sites/MLA/search?q=${query}`)
       .then((result) => {
@@ -29,12 +29,12 @@ export const getAllItems = async (req: Request, res: Response) => {
         let foundItems = [];
         let categories = [];
         if (categoriesFound.length > 1) {
-          // Si hay mas de una categoria loopeamos para luego pushear las categorias en una array
+          // Si hay mas de una categoría loopeamos para luego pushear las categorías en una array
           for (let i = 0; i < categoriesFound.length; i++) {
             categories.push(categoriesFound[i].name);
           }
         } else {
-          // Si hay una sola simplemente pusheamos esa categoria al array
+          // Si hay una sola simplemente pusheamos esa categoría al array
           categories.push(categoriesFound[0].name);
         }
         // Loopeamos los 4 items que cortamos de la respuesta de la api
@@ -59,7 +59,7 @@ export const getAllItems = async (req: Request, res: Response) => {
             free_shipping: filterItems[i].shipping.free_shipping,
           });
         }
-        // Creamos un objeto con el array de los items, de las categorias y ademas agregamos mis datos personales como dice el challenge.
+        // Creamos un objeto con el array de los items, de las categorías y ademas agregamos mis datos personales como dice el challenge.
         let object = {
           author: {
             name: 'Juan Bautista',
@@ -81,24 +81,24 @@ interface Object {
   item: object
 }
 
-// Creamos la funcion para obtener un item en particular.
+// Creamos la función para obtener un item en particular.
 export const getItem = (req: Request, res: Response) => {
   // Get the id from the request parameters
-  // Obtenemos el id de los parametros del request.
+  // Obtenemos el id de los parámetros del request.
   const { id } = req.params;
 
   if (id) {
     // Llamamos a la api de meli para los items
     const itemInfo = axios.get(`${BASE_URL}/items/${id}`);
-    // Llamamos a la api de meli para obtener la descripcion de dicho item.
+    // Llamamos a la api de meli para obtener la descripción de dicho item.
     const itemDescription = axios.get(`${BASE_URL}/items/${id}/description`);
 
-    // Generamos una doble promesa para manejar la informacion obtenida de una manera mas simple gracias a la desestructuracion de los datos.
+    // Generamos una doble promesa para manejar la informacion obtenida de una manera mas simple gracias a la destructuración de los datos.
     Promise.all([itemInfo, itemDescription]).then(async (result) => {
-      // Destructuramos la respeusta.
+      // Destructuramos la respuesta.
       let [itemInfo, itemDescription] = result;
 
-      // Inicializamos el objeto con el que vamos a responder con la informacion que obtenemos del item y el author como en la funcion anterior.
+      // Inicializamos el objeto con el que vamos a responder con la información que obtenemos del item y el author como en la función anterior.
       let object: Object = {
         author: {
           name: "Juan Bautista",
@@ -127,12 +127,12 @@ export const getItem = (req: Request, res: Response) => {
         },
       };
 
-      // Llamamos una vez mas a la api de meli para obtener la categoria del item. (este paso no estaba dentro de la explicacion del challenge)
+      // Llamamos una vez mas a la api de meli para obtener la categoría del item. (este paso no estaba dentro de la explicación del challenge)
       const categorys = await axios.get(
         `${BASE_URL}/categories/${itemInfo.data.category_id}`
       );
 
-      // Creamos el mismo algoritmo que en la funcion anterior donde nos fijamos si hay mas de una categoria loopeamos y pusheamos el nombre y si hay una sola simplemente pusheamos.
+      // Creamos el mismo algoritmo que en la funcion anterior donde nos fijamos si hay mas de una categoría loopeamos y pusheamos el nombre y si hay una sola simplemente pusheamos.
       if (categorys.data.path_from_root.length > 1) {
         for (let i = 0; i < categorys.data.path_from_root.length; i++) {
           object.categories.push(categorys.data.path_from_root[i].name);

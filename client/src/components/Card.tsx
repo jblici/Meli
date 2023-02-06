@@ -14,7 +14,7 @@ interface Items {
     decimals: number;
   };
   condition: string;
-  free_sheeping: boolean;
+  free_shipping: boolean;
 }
 
 // Definimos las props para el componente
@@ -25,7 +25,7 @@ interface Props {
 const Card: React.FC<Props> = ({ info }) => {
   if (info) {
     return (
-      // El componente Link nos provee la navegacion para un producto en particular.
+      // El componente Link nos provee la navegación para un producto en particular.
       <Link className="cardLink" to={`/items/${info?.id}`}>
         <div className="card">
           <div className="cardImg">
@@ -44,9 +44,9 @@ const Card: React.FC<Props> = ({ info }) => {
               </p>
               <span className="shipping">
                 <strong>
-                  {info?.free_sheeping === true
-                    ? "Envio gratis"
-                    : "No incluye envio"}
+                  {info?.free_shipping === true
+                    ? "Envío gratis"
+                    : "No incluye envío"}
                 </strong>
               </span>
               <div className="cardCondition">
@@ -61,7 +61,6 @@ const Card: React.FC<Props> = ({ info }) => {
       </Link>
     );
   } else {
-    // If the "info" prop is not defined, return null
     // Si las props info no esta definido, retornamos null para no mostrar nada.
     return null;
   }

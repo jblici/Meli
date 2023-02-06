@@ -1,4 +1,4 @@
-// Importamos los modulos requeridos
+// Importamos los módulos requeridos
 import express from "express";
 import cors from "cors";
 

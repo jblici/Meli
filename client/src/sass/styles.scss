@@ -33,7 +33,7 @@ p {
   margin-right: 20px;
 }
 
-.searchbar {
+.searchBox {
   @include display(flex, row, null, center, center);
 
   input {
@@ -59,7 +59,7 @@ p {
   margin: 0 auto;
 }
 
-.breadcrumble {
+.breadcrumbs {
   margin-top: 20px;
   color: grey;
   font-size: 12px;

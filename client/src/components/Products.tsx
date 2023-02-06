@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Nav from "./Nav";
 import Card from "./Card";
-import Breadcrumble from "./Breadcrumble";
+import Breadcrumbs from "./Breadcrumbs";
 
 // Definimos la interfaz para los items que recibimos de la api.
 interface Items {
@@ -14,15 +14,15 @@ interface Items {
     decimals: number
   }
   condition: string
-  free_sheeping: boolean
+  free_shipping: boolean
 }
 
 const Cards: React.FC = () => {
-  // Usamos `useState` para inicializar el estado del item y las categorias.
+  // Usamos `useState` para inicializar el estado del item y las categorías.
   const [items, setItems] = useState<Array<Items>>([]);
   const [categories, setCategories] = useState<Array<string>>([]);
 
-  // Usamos `useEffect` para llamar a la api y obtener la informacion de los items y sus categorias gracias a la query que sacamos de la URL cuando el componente se renderiza, monta.
+  // Usamos `useEffect` para llamar a la api y obtener la información de los items y sus categorías gracias a la query que sacamos de la URL cuando el componente se renderiza, monta.
   useEffect(() => {
     let search = window.location.search.split("=")[1];
     try {
@@ -41,9 +41,9 @@ const Cards: React.FC = () => {
     <div>
       <Nav />
       <div className="container">
-        <Breadcrumble categories={categories} />
+        <Breadcrumbs categories={categories} />
         <div className="products">
-          { //utilizamos la funcion map para renderizar los items que nos provee la api con el componente Card.
+          { //utilizamos la función map para renderizar los items que nos provee la api con el componente Card.
             items.map(item => {
               return (
                 <Card info={item} />

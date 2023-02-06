@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useEffect } from "react";
 import { useParams } from "react-router-dom";
 import Nav from "./Nav";
-import Breadcrumble from "./Breadcrumble";
+import Breadcrumbs from "./Breadcrumbs";
 import { parsePrice } from "../utils/parsePrice";
 import { Helmet } from "react-helmet";
 import axios from 'axios';
@@ -30,18 +30,17 @@ interface AppState {
 }
 
 const CardDetails: React.FC = () => {
-  // Usamos `useState` para inicializar el estado del item y las categorias.
+  // Usamos `useState` para inicializar el estado del item y las categorías.
   const [data, setData] = useState<AppState["item"]>();
   const [categories, setCategories] = useState<AppState["category"]>([]);
   
-  // Usamos `useParams` para obtener el parametro id de la URL
+  // Usamos `useParams` para obtener el parámetro id de la URL
   const { id } = useParams();
 
-  // Usamos `useEffect` para llamar a la api y obtener la informacion del item y sus categorias cuando el componente se renderiza, monta.
+  // Usamos `useEffect` para llamar a la api y obtener la información del item y sus categorías cuando el componente se renderiza, monta.
   useEffect(() => {
     try {
       axios.get(`http://localhost:3001/api/items/${id}`).then((res) => {
-        // Set the item data and categories in the state
         // Seteamos el estado data y categories con la respuesta de la api.
         setData(res.data.item);
         setCategories(res.data.categories)
@@ -56,7 +55,7 @@ const CardDetails: React.FC = () => {
       <Nav />
       {data ? (
         <div className="container">
-          <Breadcrumble categories={categories} />
+          <Breadcrumbs categories={categories} />
           <Helmet>
             <title>{data.title}</title>
             <meta name="description" content={data.title} />
@@ -67,7 +66,7 @@ const CardDetails: React.FC = () => {
                 <div className="leftInformation">
                   <img src={data.pictures} alt={data.title} />
                   <div className="productDescription">
-                    <h1>Descripcion del producto</h1>
+                    <h1>Descripción del producto</h1>
                     <p className="description">{data.description}</p>
                   </div>
                 </div>
