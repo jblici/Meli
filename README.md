@@ -18,11 +18,11 @@ A React-based single-page application that provides an interactive and intuitive
   
 git clone https://github.com/<username>/<Meli>.git
 
-1. Navigate to the `</Meli>` directory
+2. Navigate to the `</Meli/client>` directory
 
 cd </Meli/client>
 
-1. Install the dependencies
+3. Install the dependencies
    
 npm install
 
@@ -44,11 +44,7 @@ A Node.js based back-end server built using the Express framework and TypeScript
 
 ### Setup
 
-1. Clone the repository
-
-git clone https://github.com/<username>/<Meli>.git
-
-2. Navigate to the `</Meli/api>` directory
+1. Navigate to the `</Meli/api>` directory
 
 cd </api>
 
