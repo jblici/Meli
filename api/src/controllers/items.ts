@@ -1,76 +1,104 @@
-import {Request, Response} from 'express';
-import axios from 'axios'
+import { Request, Response } from 'express';
+import axios from 'axios';
 import BASE_URL from '../constants';
 
+// Creamos la interfaz para el objeto Category
 interface Category {
-  id: string
-  name:string
-  type:string
-  values: Array<object>
+  id: string;
+  name: string;
+  type: string;
+  values: Array<object>;
 }
 
+// Creamos la funcion para obtener todos los items de la api de Mercadolibre
 export const getAllItems = async (req: Request, res: Response) => {
+  // Get the query parameter from the request
+  // Obtenemos el parametro query para buscar los items.
   let { query } = req.query;
   if (query) {
-    axios.get(`${BASE_URL}/sites/MLA/search?q=${query}`).then((result) => {
-      const categoriesFound = result.data.filters.find(
-        (el: Category) => el.id === "category").values[0].path_from_root;
-      const filterItems = result.data.results.slice(0, 4);
-      let foundItems = [];
-      let categories = [];
-      if (categoriesFound.length > 1) {
-        for (let i = 0; i < categoriesFound.length; i++) {
-          categories.push(categoriesFound[i].name);
+    // Creamos el GET request de la api de Meli con el parametro query.
+    axios
+      .get(`${BASE_URL}/sites/MLA/search?q=${query}`)
+      .then((result) => {
+        // Filtramos el resultado de category de la respuesta de la api en una array.
+        const categoriesFound = result.data.filters.find(
+          (el: Category) => el.id === 'category'
+        ).values[0].path_from_root;
+        // Cortamos los primeros 4 resultados.
+        const filterItems = result.data.results.slice(0, 4);
+        let foundItems = [];
+        let categories = [];
+        if (categoriesFound.length > 1) {
+          // Si hay mas de una categoria loopeamos para luego pushear las categorias en una array
+          for (let i = 0; i < categoriesFound.length; i++) {
+            categories.push(categoriesFound[i].name);
+          }
+        } else {
+          // Si hay una sola simplemente pusheamos esa categoria al array
+          categories.push(categoriesFound[0].name);
         }
-      } else {
-        categories.push(categoriesFound[0].name);
-      }
-      for (let i = 0; i < filterItems.length; i++) {
-        foundItems.push({
-          id: filterItems[i].id,
-          title: filterItems[i].title,
-          price: {
-            currency: filterItems[i].currency_id,
-            amount:
-              filterItems[i].price % 1 === 0
-                ? filterItems[i].price
-                : Number(filterItems[i].price.toString().split(".")[0]),
-            decimals:
-              filterItems[i].price % 1 === 0
-                ? 0o0
-                : Number(filterItems[i].price.toString().split(".")[1]),
+        // Loopeamos los 4 items que cortamos de la respuesta de la api
+        for (let i = 0; i < filterItems.length; i++) {
+          // Pusheamos cada item a un array.
+          foundItems.push({
+            id: filterItems[i].id,
+            title: filterItems[i].title,
+            price: {
+              currency: filterItems[i].currency_id,
+              amount:
+                filterItems[i].price % 1 === 0
+                  ? filterItems[i].price
+                  : Number(filterItems[i].price.toString().split('.')[0]),
+              decimals:
+                filterItems[i].price % 1 === 0
+                  ? 0o0
+                  : Number(filterItems[i].price.toString().split('.')[1]),
+            },
+            pictures: filterItems[i].thumbnail,
+            condition: filterItems[i].condition,
+            free_shipping: filterItems[i].shipping.free_shipping,
+          });
+        }
+        // Creamos un objeto con el array de los items, de las categorias y ademas agregamos mis datos personales como dice el challenge.
+        let object = {
+          author: {
+            name: 'Juan Bautista',
+            lastname: 'Felici',
           },
-          pictures: filterItems[i].thumbnail,
-          condition: filterItems[i].condition,
-          free_shipping: filterItems[i].shipping.free_shipping,
-        });
-      }
-      let object = {
-        author: {
-          name: "Juan Bautista",
-          lastname: "Felici",
-        },
-        categories: categories,
-        items: foundItems,
-      };
-      return res.send(object);
-    });
+          categories: categories,
+          items: foundItems,
+        };
+        // Enviamos la respuesta
+        return res.send(object);
+      });
   }
-}
+};
 
+// Creamos la interfaz de la respuesta que vamos a enviar.
 interface Object {
   author: object
   categories: Array<string>
   item: object
 }
 
+// Creamos la funcion para obtener un item en particular.
 export const getItem = (req: Request, res: Response) => {
+  // Get the id from the request parameters
+  // Obtenemos el id de los parametros del request.
   const { id } = req.params;
+
   if (id) {
+    // Llamamos a la api de meli para los items
     const itemInfo = axios.get(`${BASE_URL}/items/${id}`);
+    // Llamamos a la api de meli para obtener la descripcion de dicho item.
     const itemDescription = axios.get(`${BASE_URL}/items/${id}/description`);
+
+    // Generamos una doble promesa para manejar la informacion obtenida de una manera mas simple gracias a la desestructuracion de los datos.
     Promise.all([itemInfo, itemDescription]).then(async (result) => {
+      // Destructuramos la respeusta.
       let [itemInfo, itemDescription] = result;
+
+      // Inicializamos el objeto con el que vamos a responder con la informacion que obtenemos del item y el author como en la funcion anterior.
       let object: Object = {
         author: {
           name: "Juan Bautista",
@@ -98,9 +126,13 @@ export const getItem = (req: Request, res: Response) => {
           description: itemDescription.data.plain_text,
         },
       };
+
+      // Llamamos una vez mas a la api de meli para obtener la categoria del item. (este paso no estaba dentro de la explicacion del challenge)
       const categorys = await axios.get(
         `${BASE_URL}/categories/${itemInfo.data.category_id}`
       );
+
+      // Creamos el mismo algoritmo que en la funcion anterior donde nos fijamos si hay mas de una categoria loopeamos y pusheamos el nombre y si hay una sola simplemente pusheamos.
       if (categorys.data.path_from_root.length > 1) {
         for (let i = 0; i < categorys.data.path_from_root.length; i++) {
           object.categories.push(categorys.data.path_from_root[i].name);
@@ -109,6 +141,7 @@ export const getItem = (req: Request, res: Response) => {
         object.categories.push(categorys.data.path_from_root[0].name);
       }
 
+      // Enviamos el objeto instanciado previamente como respuesta.
       return res.send(object);
     });
   }
